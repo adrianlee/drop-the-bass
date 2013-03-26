@@ -33,3 +33,32 @@ app.get('/play/:filename', function (req, res) {
   console.log(filePath);
   res.sendfile(filePath);
 });
+
+
+var chunk, end, ini, range, total, _ref;
+
+// if (blob) {
+//   range = req.headers.range;
+//   if (!range) {
+//     res.writeHead(200, {
+//       'Content-Type': blob.type
+//     });
+//     res.end(blob.body);
+//   } else {
+//     _ref = _.map(range.replace(/bytes=/, '').split('-'), function(n) {
+//       return parseInt(n, 10);
+//     }), ini = _ref[0], end = _ref[1];
+//     total = blob.size;
+//     chunk = end - ini + 1;
+//     res.writeHead(206, {
+//       'Content-Type': blob.type,
+//       'Content-Length': chunk,
+//       'Content-Range': "bytes " + ini + "-" + end + "/" + total,
+//       'Accept-Ranges': 'bytes'
+//     });
+//     res.end(blob.body);
+//   }
+// } else {
+//   res.writeHead(404);
+//   res.end();
+// }
