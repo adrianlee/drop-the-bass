@@ -4,6 +4,9 @@ var fs = require('fs'),
   express = require('express'),
   app = express();
 
+app.set('views', __dirname + '/views');
+app.use('/public', express.static(__dirname + '/public'));
+
 var config = require('./config'),
   music_path = process.argv[2] || config.dir || path.join(process.env.HOME, '/Music') || __dirname,
   files;
@@ -21,11 +24,12 @@ fs.readdir(music_path, function (err, filenames) {
 });
 
 app.get('/', function (req, res) {
-  var output = "";
-  _.forEach(files, function (file, r) {
-    output += "<p>" + file + "<br/><audio controls preload=\"auto\" autobuffer src=\"/play/" + file + "\"></audio><br/></p>";
-  });
-  res.send(output);
+  // var output = "";
+  // _.forEach(files, function (file, r) {
+  //   output += "<p>" + file + "<br/><audio controls preload=\"auto\" autobuffer src=\"/play/" + file + "\"></audio><br/></p>";
+  // });
+  // res.send(output);
+  res.render('index.jade');
 });
 
 app.get('/play/:filename', function (req, res) {
@@ -62,3 +66,5 @@ var chunk, end, ini, range, total, _ref;
 //   res.writeHead(404);
 //   res.end();
 // }
+
+var socket = require('./socket.js')
