@@ -1,0 +1,11 @@
+!!!5
+html(ng-app="app")
+    head
+        title Drop the Bass
+
+        script(src='public/lib/angular.js')
+        script(src='public/lib/socket.io.js')
+        script(src='public/js/main.js')
+
+        body
+            audio#player(check-time, controls, preload='auto', autoplay, src='/play/blah.mp3')
